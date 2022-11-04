@@ -1,13 +1,40 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+/* const InicialDb = [
+  {
+    id: 1,
+    nombre: "Sara Beltran",
+    constelacion: "cr 45 sur 67 34c",
+    cedula: "7543568454",
+    ciudad: "Bogota",
+    barrio: "Candelaria",
+    fechaNacimiento: "03 04 1993",
+    telefono: "38834592",
+    celular: "3004568643",
+    correo: "sara@gmail.com",
+  },
+  {
+    id: 2,
+    nombre: "Oscar Hernandez",
+    direccion: "av 2 45 86",
+    cedula: "4568953456",
+    ciudad: "Bogota",
+    barrio: "kenedy",
+    fechaNacimiento: "23 09 1982",
+    telefono: "34678972",
+    celular: "3129836453",
+    correo: "oscar@gmail.com",
+  },
+  {
+    id: 3,
+    nombre: "Milena Rodriguez",
+    direccion: "cra 98 34 76",
+    cedula: "8746384572",
+    ciudad: "Bogota",
+    barrio: "Aurora",
+    fechaNacimiento: "30 12 1990",
+    telefono: "83746352",
+    celular: "3109384765",
+    correo: "milena@gmail.com",
+  },
+];
+ */
