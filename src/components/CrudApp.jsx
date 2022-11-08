@@ -29,7 +29,6 @@ const CrudApp = () => {
           />
         )}
 
-        <Message />
       </article>
       
     </div>

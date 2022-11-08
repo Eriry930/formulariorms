@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import CrudContext from "./context/CrudContext";
-import Modale from "./Modale";
+
 
 const CrudTableRow = ({ el }) => {
   const { setDataToEdit, deleteData } = useContext(CrudContext);
@@ -15,8 +15,8 @@ const CrudTableRow = ({ el }) => {
       
 
       <Td>
-        <Modale onClick={() => setDataToEdit (el)}>Editar</Modale>
-        <button onClick={() => deleteData (id)}>Eliminar</button>
+        <button onClick={() => setDataToEdit (el)}>Editar</button>
+        <button onClick={() => deleteData (id)}>Eliminar</button> 
       </Td>
     </tr>
   );

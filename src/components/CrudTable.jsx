@@ -20,12 +20,11 @@ const CrudTable = () => {
         </thead>
         <tbody>
           {data.length > 0 ? (
-            data.map((el) => (
+            data.map((el) => 
               <CrudTableRow
                 key={el.id}
                 el={el}
-              />
-            ))
+              /> )
           ) : (
             <tr>
               <td colSpan="3">Sin datos</td>

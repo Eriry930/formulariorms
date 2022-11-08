@@ -37,7 +37,7 @@ const CrudProvider = ({children}) => {
     api.post(url ,options).them((res) =>{
     
     if (!res.err) {
-      setDb([...db, data]);
+      setDb([...db, res]);
       
       console.log(res);
     } else {

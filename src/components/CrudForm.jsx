@@ -12,9 +12,11 @@ const inicialForm = {
 
 const CrudForm = () => {
   const { createData, updateData, dataToEdit, setDataToEdit } =
-  useContext(CrudContext);
+    useContext(CrudContext);
+    // estado inicial del formulario
   const [form, setForm] = useState(inicialForm);
 
+  //Efecto, trae los datos y los compara para identificar si el id existe
   useEffect(() => {
     if (dataToEdit) {
       setForm(dataToEdit);
@@ -23,6 +25,7 @@ const CrudForm = () => {
     }
   }, [dataToEdit]);
 
+  //cambio de estado traer
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -30,6 +33,7 @@ const CrudForm = () => {
     });
   };
 
+  //cambio de estado crear
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -46,11 +50,13 @@ const CrudForm = () => {
     handleReset();
   };
 
+  //cambio de estado borrar
   const handleReset = (e) => {
     setForm(inicialForm);
-    setDataToEdit([]);
+    setDataToEdit(null); //null
   };
 
+  //Formulario
   return (
     <div
       style={{ zIndex: 1 }}
@@ -927,16 +933,16 @@ const CrudForm = () => {
                       width: "100%",
                     }}
                   >
-                    <button
-                      className="btn btn-success float-end"
-                      onClick={createData}
-                      type="button"
-                    >
-                      Guardar
-                    </button>
-                    <button onClick={handleReset} type="button">
-                      Cancelar
-                    </button>
+                    <input
+                      /* onClick={handleSubmit} */
+                      type="submit"
+                      value="enviar"
+                    />
+                      
+                    
+                    <input onClick={handleReset} value="Limpiar" type="reset"/>
+                      
+                    
                   </th>
                 </tr>
               </tbody>
