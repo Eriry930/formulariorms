@@ -7,6 +7,7 @@ import Message from "./Message";
 import Modals from "./Modals";
 
 
+//contenido de la pagina principal
 const CrudApp = () => {
   const { db, loading,error } = useContext(CrudContext);
   
@@ -24,13 +25,9 @@ const CrudApp = () => {
           )}
           
         </Modals>
-        {db && (
-          <CrudTable
-          />
+        {db && (  <CrudTable  />
         )}
-
       </article>
-      
     </div>
     );
         }

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import CrudContext from "./context/CrudContext";
 
 const CrudTable = () => {
+  // creacion de la constante para la base de datos
   const { db: data } = useContext(CrudContext);
   return (
     <div>

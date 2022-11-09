@@ -4,60 +4,65 @@ import { helpHttp } from "../../Helpers/helpHttp";
 const CrudContext = createContext();
 
 const CrudProvider = ({children}) => {
-    const [db, setDb] = useState(null);
-  const [dataToEdit, setDataToEdit] = useState(null);
+  const [db, setDb] = useState(null);
+  const [dataToEdit, setDataToEdit] = useState(null); //identifica si es creacion o actualizacion
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
-  let api = helpHttp ();
-  let url = 'http://localhost:5000/santos';
+  let api = helpHttp();
+  let url = "http://localhost:5000/santos";
 
-  useEffect(() =>{
+  useEffect(() => {
     setLoading(true);
-    helpHttp ().get(url).then((res) =>{
-      /* console.log(res); */
-    if (!res.err) {
-      setDb(res)
-      setError(null)
-    } else{
-      setDb(null)
-      setError(res)
-    }
-    setLoading(false);
-   });
+    helpHttp()
+      .get(url)
+      .then((res) => {
+        /* console.log(res); */
+        if (!res.err) {
+          setDb(res);
+          setError(null);
+        } else {
+          setDb(null);
+          setError(res);
+        }
+        setLoading(false);
+      });
   }, [url]);
 
+  //funcion que crea un nuevo registro
   const createData = (data) => {
-        console.log(data);
-        data.id = Date.now();
+    console.log(data);
+    data.id = Date.now();
 
-    let options ={body:data, headers:{"content-type": "aplication/json"},
-  };
-
-    api.post(url ,options).them((res) =>{
-    
-    if (!res.err) {
-      setDb([...db, res]);
-      
-      console.log(res);
-    } else {
-    setError(res);
-  }
-});
-};
-
-  const updateData = (data) => {
-    let endpoint = `${url}/${data.id}`
-      /* console.log(data.id); */    
     let options = {
       body: data,
-      headers: { "content-type": "aplication/json" },
+      headers: { "content-type": "application/json" },
+    };
+
+    api.post(url, options).then((res) => {
+      if (!res.err) {
+        setDb([...db, res]);
+
+        console.log(res);
+      } else {
+        setError(res);
+      }
+    });
+  };
+
+  //funcion que actualiza un registro
+  const updateData = (data) => {
+    let endpoint = `${url}/${data.id}`;
+    /* console.log(data.id); */
+    let options = {
+      body: data,
+      headers: { "content-type": "application/json" },
     };
 
     api.put(endpoint, options).then((res) => {
       /* console.log(edndpoint); */
       if (!res.err) {
-        let newData = db.map((el) => (el.id === data.id ? data:el));
+        let newData = db.map((el) => (el.id === data.id ? data : el));
         setDb(newData);
       } else {
         setError(res);
@@ -65,7 +70,7 @@ const CrudProvider = ({children}) => {
     });
   };
 
-
+  //funcion que elimina un registro
   const deleteData = (id) => {
     let isDelete = window.confirm(
       `¿Estás seguro de eliminar el registro con el id '${id}'?`
@@ -74,26 +79,34 @@ const CrudProvider = ({children}) => {
     if (isDelete) {
       let endpoint = `${url}/${id}`;
       let options = {
-      headers: { "content-type": "aplication/json" },
+        headers: { "content-type": "aplication/json" },
       };
 
-      api.del(endpoint,options).then(res => {
+      api.del(endpoint, options).then((res) => {
         if (!res.err) {
-          let newData = db.filter((el) => (el.id !== id));
+          let newData = db.filter((el) => el.id !== id);
           setDb(newData);
-      } else {
-        setError(res);
-      }
-      })
+        } else {
+          setError(res);
+        }
+      });
     } else {
       return;
-    };
+    }
   };
- 
 
-const data ={db, error, loading, createData, dataToEdit, setDataToEdit, updateData, deleteData}
+  const data = {
+    db,
+    error,
+    loading,
+    createData,
+    dataToEdit,
+    setDataToEdit,
+    updateData,
+    deleteData,
+  };
 
-  return <CrudContext.Provider value={data}> {children}</CrudContext.Provider>
+  return <CrudContext.Provider value={data}> {children}</CrudContext.Provider>;
 } 
 
 export {CrudProvider};

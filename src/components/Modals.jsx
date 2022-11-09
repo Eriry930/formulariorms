@@ -45,9 +45,9 @@ const Boton = styled.button`
   width: 150px;
   height: 30px;
   border: none;
-  background: #008000;
+  background: #388145;
   cursor: pointer;
-  transition: 0.3s ease all;  
+  transition: 0.3s ease all;
   border-radius: 25px;
   color: #fff;
   padding: 3px 10px 3px 8px;

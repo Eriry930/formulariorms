@@ -3,7 +3,15 @@ import "./Loader.css"
 
 
 function Loader() {
-  return <div className="lds-hourglass"></div>;
+  return (
+    <div className="lds-hourglass">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  );
+  
 }
 
 export default Loader

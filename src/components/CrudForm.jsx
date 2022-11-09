@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import CrudContext from "./context/CrudContext";
+import styled from "styled-components";
 
+//valor inicial de las casillas
 const inicialForm = {
   id: "null",
   nombre: "",
@@ -25,29 +27,30 @@ const CrudForm = () => {
     }
   }, [dataToEdit]);
 
-  //cambio de estado traer
+  //cambio el valor de la casilla
   const handleChange = (e) => {
     setForm({
       ...form,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 
-  //cambio de estado crear
+  //cambio de estado crear / modificar evento del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    //deteccion de casillas incompletas
     if (!form.nombre || !form.direccion) {
       alert("Datos incompletos");
       return;
     }
     if (form.id === null) {
-      createData(form);
+      createData(form); //crea el nuevo registro
     } else {
-      updateData(form);
+      updateData(form); // modifica el registro
     }
 
-    handleReset();
+    handleReset(); //borrael valor de los campos
   };
 
   //cambio de estado borrar
@@ -136,11 +139,11 @@ const CrudForm = () => {
                     colSpan={4}
                     style={{
                       borderBottom: "1px solid black",
-                      backgroundColor: "lightgrey",
+                      backgroundColor: "#388145",
                       width: "100%",
                     }}
                   >
-                    <h2 className="text-center" style={{ fontSize: "20px" }}>
+                    <h2 className="text-center" style={{ fontSize: "15px" }}>
                       DATOS PERSONALES
                     </h2>
                   </th>
@@ -151,9 +154,9 @@ const CrudForm = () => {
                     style={{ width: "40%", border: "1px solid black" }}
                   >
                     <label>Nombre:</label>
-                    <input
+                    <Input
                       type="text"
-                      style={{ width: "85%" }}
+                      style={{ width: "87%" }}
                       onChange={handleChange}
                       name="nombre"
                       value={form.nombre}
@@ -164,9 +167,9 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Direccion de residencia:</label>
-                    <input
+                    <Input
                       type="text"
-                      style={{ width: "61%" }}
+                      style={{ width: "66%" }}
                       onChange={handleChange}
                       name="direccion"
                       value={form.direccion}
@@ -179,7 +182,7 @@ const CrudForm = () => {
                     style={{ width: "20%", border: "1px solid black" }}
                   >
                     <label>Cedula:</label>
-                    <input
+                    <Input
                       type="text"
                       style={{ width: "49%" }}
                       onChange={handleChange}
@@ -188,9 +191,9 @@ const CrudForm = () => {
                     />
 
                     <label>de:</label>
-                    <input
+                    <Input
                       type="text"
-                      style={{ width: "32%" }}
+                      style={{ width: "33%" }}
                       onChange={handleChange}
                       name="expedida"
                       value={form.expedida}
@@ -198,9 +201,9 @@ const CrudForm = () => {
                   </th>
                   <th>
                     <label>ciudad:</label>
-                    <input
+                    <Input
                       type="text"
-                      style={{ width: "72%" }}
+                      style={{ width: "76%" }}
                       onChange={handleChange}
                       name="ciudad"
                       value={form.ciudad}
@@ -208,9 +211,9 @@ const CrudForm = () => {
                   </th>
                   <th>
                     <label>Barrio:</label>
-                    <input
+                    <Input
                       type="text"
-                      style={{ width: "73%" }}
+                      style={{ width: "75%" }}
                       onChange={handleChange}
                       name="barrio"
                       value={form.barrio}
@@ -223,9 +226,9 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Fecha de nacimiento:</label>
-                    <input
+                    <Input
                       type="text"
-                      style={{ width: "68%" }}
+                      style={{ width: "71%" }}
                       onChange={handleChange}
                       name="fechaNacimiento"
                       value={form.fechaNacimiento}
@@ -233,9 +236,9 @@ const CrudForm = () => {
                   </th>
                   <th>
                     <label>Telefono fijo: </label>
-                    <input
+                    <Input
                       type="text"
-                      style={{ width: "56%" }}
+                      style={{ width: "59%" }}
                       onChange={handleChange}
                       name="phone"
                       value={form.telefono}
@@ -243,9 +246,9 @@ const CrudForm = () => {
                   </th>
                   <th>
                     <label>Movil:</label>
-                    <input
+                    <Input
                       type="text"
-                      style={{ width: "76%" }}
+                      style={{ width: "77%" }}
                       onChange={handleChange}
                       name="celular"
                       value={form.celular}
@@ -258,16 +261,16 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Lugar de nacimiento:</label>
-                    <input type="text" style={{ width: "68%" }} />
+                    <Input type="text" style={{ width: "71%" }} />
                   </th>
                   <th
                     colSpan={2}
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Email:</label>
-                    <input
+                    <Input
                       type="text"
-                      style={{ width: "87%" }}
+                      style={{ width: "89%" }}
                       onChange={handleChange}
                       name="correo"
                       value={form.correo}
@@ -280,14 +283,14 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Grupo sanguineo:</label>
-                    <input type="text" style={{ width: "73%" }} />
+                    <Input type="text" style={{ width: "75%" }} />
                   </th>
                   <th
                     colSpan={2}
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Estado civil:</label>
-                    <input type="text" style={{ width: "79%" }} />
+                    <Input type="text" style={{ width: "81%" }} />
                   </th>
                 </tr>
                 <tr style={{ border: "1px solid black" }}>
@@ -296,14 +299,14 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Licencia de conducción:</label>
-                    <input type="text" style={{ width: "64%" }} />
+                    <Input type="text" style={{ width: "68%" }} />
                   </th>
                   <th
                     colSpan={2}
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Numero de hijos:</label>
-                    <input type="text" style={{ width: "72%" }} />
+                    <Input type="text" style={{ width: "75%" }} />
                   </th>
                 </tr>
                 <tr style={{ border: "1px solid black" }}>
@@ -312,20 +315,20 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>En caso de emergencia avisar a :</label>
-                    <input type="text" style={{ width: "52%" }} />
+                    <Input type="text" style={{ width: "57%" }} />
                   </th>
                   <th
                     colSpan={2}
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Telefono de contacto:</label>
-                    <input type="text" style={{ width: "66%" }} />
+                    <Input type="text" style={{ width: "70%" }} />
                   </th>
                 </tr>
                 <tr style={{ border: "1px solid black" }}>
                   <th colSpan={4} style={{ width: "50%" }}>
                     <label>Parentesco:</label>
-                    <input type="text" style={{ width: "90%" }} />
+                    <Input type="text" style={{ width: "91%" }} />
                   </th>
                 </tr>
                 <tr style={{ border: "1px solid black" }}>
@@ -347,11 +350,11 @@ const CrudForm = () => {
                   </th>
                   <th>
                     <label>Parentesco:</label>
-                    <input type="text" style={{ width: "58%" }} />
+                    <Input type="text" style={{ width: "64%" }} />
                   </th>
                   <th>
                     <label>Parentesco:</label>
-                    <input type="text" style={{ width: "58%" }} />
+                    <Input type="text" style={{ width: "64%" }} />
                   </th>
                 </tr>
                 <tr>
@@ -361,11 +364,11 @@ const CrudForm = () => {
                   </th>
                   <th>
                     <label>Parentesco:</label>
-                    <input type="text" style={{ width: "58%" }} />
+                    <Input type="text" style={{ width: "64%" }} />
                   </th>
                   <th>
                     <label>Parentesco:</label>
-                    <input type="text" style={{ width: "58%" }} />
+                    <Input type="text" style={{ width: "64%" }} />
                   </th>
                 </tr>
                 <th
@@ -378,7 +381,7 @@ const CrudForm = () => {
               </tbody>
             </table>
 
-            {/* -------------------------------------------------second table------------------------------------------------------------ */}
+            {/* -------------------------------------------------segunda tabla------------------------------------------------------------ */}
 
             <table border={1} style={{ width: "100%" }}>
               <tbody>
@@ -387,11 +390,11 @@ const CrudForm = () => {
                     colSpan={4}
                     style={{
                       borderBottom: "1px solid black",
-                      backgroundColor: "lightgrey",
+                      backgroundColor: "#388145",
                       width: "100%",
                     }}
                   >
-                    <h2 className="text-center" style={{ fontSize: "20px" }}>
+                    <h2 className="text-center" style={{ fontSize: "17px" }}>
                       DATOS LABORALES
                     </h2>
                   </th>
@@ -402,16 +405,16 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Dirección del sitio de trabajo:</label>
-                    <input type="text" style={{ width: "53%" }} />
+                    <Input type="text" style={{ width: "57%" }} />
                   </th>
                   <th>
                     <label>Sueldo:</label>
                   </th>
                   <th>
                     <label>Basico:</label>
-                    <input type="text" style={{ width: "86%" }} />
+                    <Input type="text" style={{ width: "87%" }} />
                     <label>Integral:</label>
-                    <input type="text" style={{ width: "84%" }} />
+                    <Input type="text" style={{ width: "85%" }} />
                   </th>
                 </tr>
                 <tr style={{ border: "1px solid black" }}>
@@ -420,9 +423,9 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Ciudad:</label>
-                    <input type="text" style={{ width: "37%" }} />
+                    <Input type="text" style={{ width: "38%" }} />
                     <label>Telefono:</label>
-                    <input type="text" style={{ width: "36%" }} />
+                    <Input type="text" style={{ width: "37%" }} />
                   </th>
                   <th style={{ width: "100%" }}>
                     <h4 className="text-center">
@@ -436,11 +439,11 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Cargo:</label>
-                    <input type="text" style={{ width: "88%" }} />
+                    <Input type="text" style={{ width: "89%" }} />
                   </th>
                   <th>
                     <label>Telefono fijo: </label>
-                    <input type="text" style={{ width: "76%" }} />
+                    <Input type="text" style={{ width: "79%" }} />
                   </th>
                 </tr>
                 <tr style={{ border: "1px solid black" }}>
@@ -449,11 +452,11 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Centro de costo: </label>
-                    <input type="text" style={{ width: "75%" }} />
+                    <Input type="text" style={{ width: "77%" }} />
                   </th>
                   <th>
                     <label>Alimentacion:</label>
-                    <input type="text" style={{ width: "75%" }} />
+                    <Input type="text" style={{ width: "78%" }} />
                   </th>
                 </tr>
                 <tr style={{ border: "1px solid black" }}>
@@ -462,11 +465,11 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Fecha de contratación: </label>
-                    <input type="text" style={{ width: "66%" }} />
+                    <Input type="text" style={{ width: "69%" }} />
                   </th>
                   <th>
                     <label>Localizacion:</label>
-                    <input type="text" style={{ width: "76%" }} />
+                    <Input type="text" style={{ width: "79%" }} />
                   </th>
                 </tr>
                 <tr style={{ border: "1px solid black" }}>
@@ -475,11 +478,11 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Fecha de vencimiento:</label>
-                    <input type="text" style={{ width: "67%" }} />
+                    <Input type="text" style={{ width: "70%" }} />
                   </th>
                   <th>
                     <label>Movilizacion:</label>
-                    <input type="text" style={{ width: "76%" }} />
+                    <Input type="text" style={{ width: "79%" }} />
                   </th>
                 </tr>
                 <tr style={{ border: "1px solid black" }}>
@@ -488,23 +491,23 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Tipo de contrato:</label>
-                    <input type="text" style={{ width: "74%" }} />
+                    <Input type="text" style={{ width: "77%" }} />
                   </th>
                   <th>
                     <label>Otro:</label>
-                    <input type="text" style={{ width: "88%" }} />
+                    <Input type="text" style={{ width: "90%" }} />
                   </th>
                 </tr>
                 <tr style={{ border: "1px solid black" }}>
                   <th colSpan={3} style={{ width: "50%" }}>
                     <label>Turno de trabajo:</label>
-                    <input type="text" style={{ width: "86%" }} />
+                    <Input type="text" style={{ width: "87%" }} />
                   </th>
                 </tr>
               </tbody>
             </table>
 
-            {/* -------------------------------------------------third table------------------------------------------------------------ */}
+            {/* -------------------------------------------------tercera tabla------------------------------------------------------------ */}
 
             <table border={1} style={{ width: "100%" }}>
               <tbody>
@@ -523,11 +526,11 @@ const CrudForm = () => {
                     colSpan={2}
                     style={{
                       borderBottom: "1px solid black",
-                      backgroundColor: "lightgrey",
+                      backgroundColor: "#388145",
                       width: "50%",
                     }}
                   >
-                    <h2 className="text-center" style={{ fontSize: "20px" }}>
+                    <h2 className="text-center" style={{ fontSize: "17px" }}>
                       DATOS DE SEGURIDAD SOCIAL
                     </h2>
                   </th>
@@ -535,11 +538,11 @@ const CrudForm = () => {
                     colSpan={2}
                     style={{
                       borderBottom: "1px solid black",
-                      backgroundColor: "lightgrey",
+                      backgroundColor: "#388145",
                       width: "50%",
                     }}
                   >
-                    <h2 className="text-center" style={{ fontSize: "20px" }}>
+                    <h2 className="text-center" style={{ fontSize: "17px" }}>
                       BENEFICIO TRIBUTARIO RETENCION EN LA FUENTE
                     </h2>
                   </th>
@@ -550,9 +553,9 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>ARL:</label>
-                    <input type="text" style={{ width: "40%" }} />
+                    <Input type="text" style={{ width: "41%" }} />
                     <label>EPS:</label>
-                    <input type="text" style={{ width: "40%" }} />
+                    <Input type="text" style={{ width: "41%" }} />
                   </th>
                   <th></th>
                 </tr>
@@ -562,9 +565,9 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>AFP:</label>
-                    <input type="text" style={{ width: "36%" }} />
+                    <Input type="text" style={{ width: "38%" }} />
                     <label>Cesantias:</label>
-                    <input type="text" style={{ width: "36%" }} />
+                    <Input type="text" style={{ width: "38%" }} />
                   </th>
                   <th
                     colSpan={2}
@@ -584,7 +587,7 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Caja de compensacion:</label>
-                    <input type="text" style={{ width: "64%" }} />
+                    <Input type="text" style={{ width: "68%" }} />
                   </th>
                   <th
                     colSpan={2}
@@ -635,14 +638,14 @@ const CrudForm = () => {
                 </tr>
               </tbody>
             </table>
-            {/* -------------------------------------------------fourth table------------------------------------------------------------ */}
+            {/* -------------------------------------------------cuarta tabla------------------------------------------------------------ */}
             <table border={1} style={{ width: "100%" }}>
               <tbody>
                 <tr
                   colSpan={4}
                   style={{
                     borderBottom: "1px solid black",
-                    backgroundColor: "lightgrey",
+                    backgroundColor: "#388145",
                     width: "50%",
                   }}
                 ></tr>
@@ -651,11 +654,11 @@ const CrudForm = () => {
                     colSpan={2}
                     style={{
                       borderBottom: "1px solid black",
-                      backgroundColor: "lightgrey",
+                      backgroundColor: "#388145",
                       width: "50%",
                     }}
                   >
-                    <h2 className="text-center" style={{ fontSize: "20px" }}>
+                    <h2 className="text-center" style={{ fontSize: "17px" }}>
                       DATOS DOTACIÓN
                     </h2>
                   </th>
@@ -663,11 +666,11 @@ const CrudForm = () => {
                     colSpan={2}
                     style={{
                       borderBottom: "1px solid black",
-                      backgroundColor: "lightgrey",
+                      backgroundColor: "#388145",
                       width: "50%",
                     }}
                   >
-                    <h2 className="text-center" style={{ fontSize: "20px" }}>
+                    <h2 className="text-center" style={{ fontSize: "17px" }}>
                       RECURSOS DE TRABAJO
                     </h2>
                   </th>
@@ -679,7 +682,7 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Camisa talla:</label>
-                    <input type="text" style={{ width: "77%" }} />
+                    <Input type="text" style={{ width: "81%" }} />
                   </th>
                   <th
                     colSpan={3}
@@ -704,7 +707,7 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Pantalon talla:</label>
-                    <input type="text" style={{ width: "75%" }} />
+                    <Input type="text" style={{ width: "79%" }} />
                   </th>
                   <th
                     colSpan={3}
@@ -729,7 +732,7 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Botas No:</label>
-                    <input type="text" style={{ width: "82%" }} />
+                    <Input type="text" style={{ width: "85%" }} />
                   </th>
                   <th
                     colSpan={3}
@@ -754,7 +757,7 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Botas de caucho No:</label>
-                    <input type="text" style={{ width: "67%" }} />
+                    <Input type="text" style={{ width: "72%" }} />
                   </th>
                   <th
                     colSpan={3}
@@ -776,7 +779,7 @@ const CrudForm = () => {
               </tbody>
             </table>
 
-            {/* -------------------------------------------------fifth table------------------------------------------------------------ */}
+            {/* -------------------------------------------------quinta tabla------------------------------------------------------------ */}
 
             <table border={1} style={{ width: "100%" }}>
               <tbody>
@@ -785,11 +788,11 @@ const CrudForm = () => {
                     colSpan={4}
                     style={{
                       borderBottom: "1px solid black",
-                      backgroundColor: "lightgrey",
+                      backgroundColor: "#388145",
                       width: "100%",
                     }}
                   >
-                    <h2 className="text-center" style={{ fontSize: "20px" }}>
+                    <h2 className="text-center" style={{ fontSize: "17px" }}>
                       ACEPTACIÓN DE LOS DATOS DEL EMPLEADO Y AUTORIZACIÓN PAGO
                       DE SALARIO
                     </h2>
@@ -804,7 +807,7 @@ const CrudForm = () => {
                       Declaro que la información suministrada es real y
                       verídica. Autorizo a RMS S.A.S a consignar mi salario:
                     </label>
-                    <input type="text" style={{ width: "24%" }} />
+                    <Input type="text" style={{ width: "31%" }} />
                   </th>
                 </tr>
                 <tr>
@@ -813,7 +816,7 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Banco:</label>
-                    <input type="text" style={{ width: "86%" }} />
+                    <Input type="text" style={{ width: "89%" }} />
                   </th>
                 </tr>
                 <tr>
@@ -822,7 +825,7 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Cuenta No.:</label>
-                    <input type="text" style={{ width: "80%" }} />
+                    <Input type="text" style={{ width: "82%" }} />
                   </th>
                 </tr>
                 <tr>
@@ -831,7 +834,7 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Ahorro: </label>
-                    <input type="text" style={{ width: "85%" }} />
+                    <Input type="text" style={{ width: "87%" }} />
                   </th>
                 </tr>
                 <tr>
@@ -840,7 +843,7 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Corriente: </label>
-                    <input type="text" style={{ width: "81%" }} />
+                    <Input type="text" style={{ width: "83%" }} />
                   </th>
                 </tr>
                 <tr style={{ border: "1px solid black" }}>
@@ -849,7 +852,7 @@ const CrudForm = () => {
                     style={{ width: "50%", border: "1px solid black" }}
                   >
                     <label>Fecha:</label>
-                    <input type="text" style={{ width: "87%" }} />
+                    <Input type="text" style={{ width: "88%" }} />
                   </th>
                   <th>
                     <label>FIRMA DEL EMPLEADO</label>
@@ -866,7 +869,7 @@ const CrudForm = () => {
               </tbody>
             </table>
 
-            {/* -------------------------------------------------sixth table------------------------------------------------------------ */}
+            {/* -------------------------------------------------sexta tabla------------------------------------------------------------ */}
 
             <table border={1} style={{ width: "100%" }}>
               <tbody>
@@ -875,11 +878,11 @@ const CrudForm = () => {
                     colSpan={3}
                     style={{
                       borderBottom: "1px solid black",
-                      backgroundColor: "lightgrey",
+                      backgroundColor: "#388145",
                       width: "100%",
                     }}
                   >
-                    <h2 className="text-center" style={{ fontSize: "20px" }}>
+                    <h2 className="text-center" style={{ fontSize: "17px" }}>
                       VERIFICACION Y APROBACION
                     </h2>
                   </th>
@@ -933,16 +936,9 @@ const CrudForm = () => {
                       width: "100%",
                     }}
                   >
-                    <input
-                      /* onClick={handleSubmit} */
-                      type="submit"
-                      value="enviar"
-                    />
-                      
-                    
-                    <input onClick={handleReset} value="Limpiar" type="reset"/>
-                      
-                    
+                    <input type="submit" value="enviar" />
+
+                    <input type="reset" value="Limpiar" onClick={handleReset} />
                   </th>
                 </tr>
               </tbody>
@@ -955,3 +951,9 @@ const CrudForm = () => {
 };
 
 export default CrudForm;
+
+const Input = styled.input`
+  margin-right: 1px;
+  background-color: #d0e7fc;
+  border: none;
+`;
